@@ -13,3 +13,21 @@ class ArmasContundentes inherits Arma{
   override method valorDeAtaque() = peso
 }
 
+object casco {
+  method armadura(gladiador) = 10
+}
+
+object escudo {
+  method armadura(gladiador) = 5 + (gladiador.destreza() * 0.1)
+}
+
+class Gladiador{
+  var vida = 100
+
+  //method atacar
+  //method defenderse
+}
+
+class Mirmillon inherits Gladiador{
+  var arma = Espada
+}
