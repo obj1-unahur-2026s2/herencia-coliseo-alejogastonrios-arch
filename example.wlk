@@ -46,6 +46,9 @@ class Mirmillon inherits Gladiador{
   method destreza() = 15
   method cambiarArmadura(otraArmadura){armadura = otraArmadura}
   override method defensa() = self.destreza() + armadura.valorArmaadura(self)
+  method crearGrupoCon(gladiador){
+    return new Grupo(nombre="Mirmillolandia", miembros=[self, gladiador])
+  }
 }
 
 class Dimachaerus inherits Gladiador{
@@ -57,4 +60,19 @@ class Dimachaerus inherits Gladiador{
   }
   method poderDeAtaque() = self.fuerza() + armas.sum({a => a.valorDeAtaque()})
   override method defensa() = destreza/2
+  method crearGrupoCon(gladiador){
+    const fuerzaGrupo= self.poderDeAtaque() + gladiador.poderDeAtaque()
+    return new Grupo(nombre="D-",fuerzaGrupo, miembros=[self, gladiador])
+  }
+}
+
+class Grupo{
+  const nombre
+  var peleas = 0
+  const miembros = []
+
+  method agregarMiembro(gladiador){miembros.add(gladiador)}
+  method quitarMiembro(gladiador){miembros.remove(gladiador)}
+
+  method vivos() = miembros.filter(m => m.vida())
 }
