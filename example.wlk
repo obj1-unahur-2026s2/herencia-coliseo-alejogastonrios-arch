@@ -1,11 +1,15 @@
-class ArmasDeFilo{
+class Arma{
+  method valorDeAtaque()
+}
+
+class ArmasDeFilo inherits Arma{
   const filo 
   const longitud
-
-  method valorDeAtaque() = filo * longitud 
+  override method valorDeAtaque() = filo * longitud 
 }
 
-class ArmasContundentes{
+class ArmasContundentes inherits Arma{
   const peso
-  method valorDeAtaque() = peso
+  override method valorDeAtaque() = peso
 }
+
