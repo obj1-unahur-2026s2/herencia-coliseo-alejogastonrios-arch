@@ -1,25 +1,5 @@
-class Arma{
-  method valorDeAtaque()
-}
-
-class ArmasDeFilo inherits Arma{
-  const filo 
-  const longitud
-  override method valorDeAtaque() = filo * longitud 
-}
-
-class ArmasContundentes inherits Arma{
-  const peso
-  override method valorDeAtaque() = peso
-}
-
-object casco {
-  method valorArmaadura(gladiador) = 10
-}
-
-object escudo {
-  method valorArmaadura(gladiador) = 5 + (gladiador.destreza() * 0.1)
-}
+import Armas.*
+import Grupos.*
 
 class Gladiador{
   var property vida = 100
@@ -53,26 +33,16 @@ class Mirmillon inherits Gladiador{
 
 class Dimachaerus inherits Gladiador{
   const armas = []
-  const destreza 
+  var destreza 
   method fuerza() = 10
   override method atacar(gladiador){
-    super(gladiador) += 1
+    super(gladiador)
+    destreza += 1
   }
   method poderDeAtaque() = self.fuerza() + armas.sum({a => a.valorDeAtaque()})
   override method defensa() = destreza/2
   method crearGrupoCon(gladiador){
     const fuerzaGrupo= self.poderDeAtaque() + gladiador.poderDeAtaque()
-    return new Grupo(nombre="D-",fuerzaGrupo, miembros=[self, gladiador])
+    return new Grupo(nombre="D-" + fuerzaGrupo, miembros=[self, gladiador])
   }
-}
-
-class Grupo{
-  const nombre
-  var peleas = 0
-  const miembros = []
-
-  method agregarMiembro(gladiador){miembros.add(gladiador)}
-  method quitarMiembro(gladiador){miembros.remove(gladiador)}
-
-  method vivos() = miembros.filter(m => m.vida())
 }
