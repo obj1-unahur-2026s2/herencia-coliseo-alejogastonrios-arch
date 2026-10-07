@@ -29,5 +29,18 @@ class Gladiador{
 }
 
 class Mirmillon inherits Gladiador{
-  var arma = Espada
+  var property arma 
+  var property fuerza
+  var armadura
+
+  method fuerza(valor) {fuerza = valor}
+ // method destreza() = 15
+  method cambiarArmadura(otraArmadura){armadura = otraArmadura}
+}
+
+class Dimachaerus inherits Gladiador{
+  const armas = []
+  const destreza 
+
+  method destreza() = 10
 }
